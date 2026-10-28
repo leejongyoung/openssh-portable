@@ -87,3 +87,9 @@ Portable OpenSSH development is discussed on the [openssh-unix-dev mailing list]
 ## Reporting bugs
 
 _Non-security_ bugs may be reported to the developers via [Bugzilla](https://bugzilla.mindrot.org/) or via the mailing list above. Security bugs should be reported to [openssh@openssh.com](mailto:openssh.openssh.com).
+
+## Fork notes (leejongyoung/openssh-portable)
+
+* `master` is a pristine mirror of `openssh/openssh-portable` `master`, fast-forwarded by the scheduled "Sync mirror branch from upstream" workflow. Do not commit here; divergence fails the sync.
+* `work` (default branch) is where fixes are developed and merged via fork PRs after local build/test verification.
+* Upstream's heavy CI matrices are disabled on this fork (only the sync workflow runs); verification is done locally before merge.
