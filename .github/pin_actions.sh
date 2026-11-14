@@ -11,10 +11,10 @@ github=https://github.com
 for workflow in workflows/*.yml; do
 	sed 's/ - /   /' ${workflow} | grep -v '^#' | awk '/uses:/ {print}' | \
 	    while read line; do
-		action_ver=$(awk '{print $2}' <<<${line})
-		action=$(cut -f1 -d@ <<<${action_ver})
-		ver=$(cut -f2 -d@ <<<${action_ver})
-		intendedver=$(awk '{print $4}' <<<${line})
+		action_ver=$(printf '%s\n' "${line}" | awk '{print $2}')
+		action=$(printf '%s\n' "${action_ver}" | cut -f1 -d@)
+		ver=$(printf '%s\n' "${action_ver}" | cut -f2 -d@)
+		intendedver=$(printf '%s\n' "${line}" | awk '{print $4}')
 		if [ -z "${intendedver}" ]; then
 			intendedver=${ver}
 		fi
